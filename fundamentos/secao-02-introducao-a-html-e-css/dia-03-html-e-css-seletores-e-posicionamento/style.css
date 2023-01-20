@@ -7,3 +7,10 @@ ol.memorable-phrases li:nth-child(even){
 ol.memorable-phrases li:nth-child(odd){
     text-transform: uppercase;
 }
+h1, h3 {
+    color: red;
+}
+h1, h3 > em {
+    font-size: 40px;
+    border: 1px black solid ;
+}
