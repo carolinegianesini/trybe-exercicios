@@ -20,3 +20,9 @@ li {
 li > em {
     font-weight: bold;
 }
+#programming-languages li:nth-child(-n+3) {
+    color: blue;
+}
+ul li span.java {
+    background-color: rgb(255, 170, 227) ;
+}
