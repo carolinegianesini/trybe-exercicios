@@ -1,0 +1,9 @@
+ol.memorable-phrases li {
+    background-color: yellow;
+}
+ol.memorable-phrases li:nth-child(even){
+    color: green
+}
+ol.memorable-phrases li:nth-child(odd){
+    text-transform: uppercase;
+}
