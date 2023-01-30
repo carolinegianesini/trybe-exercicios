@@ -31,6 +31,18 @@ ul li span.java {
 #biggest-allies li a:hover {
     font-weight: bold;
 }
-#biggest-allies li a:nth-of-type(1) {
-    color: orangered
-} /*TERMINAR QUINTO REQUISITO*/
+#biggest-allies li a:hover[href*="stackoverflow"] {
+    color: orangered;
+} 
+#biggest-allies li a:hover[href*="w3schools"] {
+    color: green;
+} 
+#biggest-allies li a:hover[href*="mozzila"] {
+    color: black;
+} 
+#biggest-allies li a:hover[href*="devdocs"] {
+    color: yellow;
+} 
+#biggest-allies li a:hover[href*="trybe"] {
+    color: green;
+} 
