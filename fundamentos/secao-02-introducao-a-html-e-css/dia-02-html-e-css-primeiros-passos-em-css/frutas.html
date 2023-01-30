@@ -6,7 +6,9 @@
     <style>
        h1 {
         font-size: 65px;
-        color: orange
+        font-family: sans-serif;
+        color: orange;
+        text-align: center;
        } 
        ul {
         background-color: greenyellow
@@ -14,15 +16,36 @@
        .back-color {
         background-color: palevioletred;
        }
+       p {
+        font-weight: 600;
+        font-size: 3em;
+        text-decoration: underline;
+       }
+       body {
+        font-size: 16px;
+       }
+       li {
+        font-style: italic;
+        line-height: 30px;
+       }
+       #maçã {
+        background-color: rgb(175, 12, 12);
+       }
+       #banana {
+        background-color: rgb(255, 206, 71);
+       }
+       #goiaba {
+        background-color: rgb(255, 85, 73);
+       }
     </style>
   </head>
   <body>
     <h1>Frutas</h1>
     <p class="back-color">Qual é a sua fruta favorita?</p>
     <ul class="back-color">
-      <li>Maçã</li>
-      <li>Banana</li>
-      <li>Goiaba</li>
+      <li id="maçã">Maçã</li>
+      <li id="banana">Banana</li>
+      <li id="goiaba">Goiaba</li>
     </ul>
   </body>
 </html>
