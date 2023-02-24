@@ -44,18 +44,39 @@
 // }
 // console.log(Object.entries(socio));
 
-const coutries = {
-    franca: 'Paris',
-    brasil: 'Brasília',
-    espanha: 'Madrid',
-    portugal: 'Lisboa',
+// const coutries = {
+//     franca: 'Paris',
+//     brasil: 'Brasília',
+//     espanha: 'Madrid',
+//     portugal: 'Lisboa',
+// };
+
+// const pairKeyValue = Object.entries(coutries);
+
+// for(index in pairKeyValue) {
+//     console.log('--------');
+//     console.log('País:', pairKeyValue[index][0]);
+//     console.log('Capital:', pairKeyValue[index][1]);
+// };
+
+const pessoa = {
+    nome: 'Cesar Augusto',
+    sobrenome: 'Zanchetti',
+    idade: 35,
+    filhos: false,
 };
 
-const pairKeyValue = Object.entries(coutries);
-
-for(index in pairKeyValue) {
-    console.log('--------');
-    console.log('País:', pairKeyValue[index][0]);
-    console.log('Capital:', pairKeyValue[index][1]);
+const infos = {
+    idade: 36,
+    profissao: 'administrador',
 };
+
+const familia = {
+    filhos: ['Carol', 'Lucas'],
+    esposa: 'Caroline',
+};
+
+const novaPessoa = Object.assign({}, pessoa, infos, familia);
+console.log(novaPessoa);
+
 
