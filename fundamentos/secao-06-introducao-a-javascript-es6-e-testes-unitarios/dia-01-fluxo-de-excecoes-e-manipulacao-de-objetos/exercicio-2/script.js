@@ -29,10 +29,33 @@
 
 // listaSkills(student2);
 
-const funcionaria = {
-    nome: 'Silvana',
-    idade: 45, 
-    função: 'vendedora',
-}
+// const funcionaria = {
+//     nome: 'Silvana',
+//     idade: 45, 
+//     função: 'vendedora',
+// }
 
-console.log(Object.values(funcionaria));
+// console.log(Object.values(funcionaria));
+
+// const socio = {
+//     nome: 'Jairo',
+//     idade: 50,
+//     função: 'administrador',
+// }
+// console.log(Object.entries(socio));
+
+const coutries = {
+    franca: 'Paris',
+    brasil: 'Brasília',
+    espanha: 'Madrid',
+    portugal: 'Lisboa',
+};
+
+const pairKeyValue = Object.entries(coutries);
+
+for(index in pairKeyValue) {
+    console.log('--------');
+    console.log('País:', pairKeyValue[index][0]);
+    console.log('Capital:', pairKeyValue[index][1]);
+};
+
