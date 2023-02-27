@@ -63,7 +63,38 @@ const verifyPair = (obj, key, value) => {
       if (entries[index][0] === key && entries[index][1] === value) isEqual = true;
     }
     return isEqual;
-  };
-  console.log(verifyPair(lesson2,'professor','Carlos'));
+};
+console.log(verifyPair(lesson2,'professor','Carlos'));
 
+const allLesson = {
+    lesson1: {
+      materia: 'Matemática',
+      numeroEstudantes: 20,
+      professor: 'Maria Clara',
+      turno: 'manhã'
+    },
+    lesson2: {
+      materia: 'História',
+      numeroEstudantes: 20,
+      professor: 'Carlos',
+      turno: 'noite'
+    },
+    lesson3: {
+      materia: 'Matemática',
+      numeroEstudantes: 10,
+      professor: 'Maria Clara',
+      turno: 'noite'
+    }
+}
 
+function mathStudents(objeto) {
+    let total = 0;
+    const array = Object.keys(objeto);
+    for (index in array) {
+        if (objeto[array[index]].materia === 'Matemática'){
+            total += objeto[array[index]].numeroEstudantes;
+        }
+    }
+    return total;
+}
+console.log(mathStudents(allLesson));
