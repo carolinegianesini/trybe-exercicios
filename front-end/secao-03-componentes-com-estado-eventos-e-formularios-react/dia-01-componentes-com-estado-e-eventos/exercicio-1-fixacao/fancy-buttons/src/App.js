@@ -1,24 +1,22 @@
 import React from 'react';
 
-function handleButtonOne() {
-  console.log('Clicou no botão 1');
-}
-
-function handleButtonTwo() {
-  console.log('Clicou no botão 2');
-}
-
-function handleButtonThree() {
-  console.log('Clicou no botão 3');
-}
-
 class App extends React.Component {
+  handleButtonOne = () => {
+    console.log('Clicou no botão 1', this)
+  }
+  handleButtonTwo = () => {
+    console.log('Clicou no botão 2', this)
+  }
+  handleButtonThree = () => {
+    console.log('Clicou no botão 3', this)
+  }
+
   render() {
     return (
     <div>
-      <button onClick={ handleButtonOne }>Botão 1</button>
-      <button onClick={ handleButtonTwo }>Botão 2</button>
-      <button onClick={ handleButtonThree }>Botão 3</button>
+      <button onClick={this.handleButtonOne}>Botão 1</button>
+      <button onClick={this.handleButtonTwo}>Botão 2</button>
+      <button onClick={this.handleButtonThree}>Botão 3</button>
     </div>
     );
   }
