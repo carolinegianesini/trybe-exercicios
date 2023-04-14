@@ -6,15 +6,17 @@ class SelectInput extends Component {
     const { children, handleChange } = this.props;
 
     return (
-      <label htmlFor="children">Filhos:
-        <select name="children" id="children" onChange={handleChange} value={children}>
-          <option value="">Selecione</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      </label>
+      <div>
+        <label htmlFor="children">Filhos:
+          <select name="children" id="children" onChange={handleChange} value={children}>
+            <option value="">Selecione</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </label>
+      </div>
     );
   }
 }
