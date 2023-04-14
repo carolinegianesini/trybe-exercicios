@@ -1,53 +1,70 @@
 import React, { Component } from 'react';
+import SelectInput from './SelectInput';
 
 class Form extends Component {
   state = {
-    children: 0,
+    children: '',
     email: '',
-    age: 0,
+    age: '',
     description: '',
+    terms: false,
   }
 
-  emailChange = (event) => {
+  handleChange = ({ target }) => {
+    const { name, type } = target;
+    const value = (type === 'checkbox') ? target.checked : target.value;
     this.setState({
-      email: event.target.value,
+      [name]: value,
     })
   };
 
+  
   render() {
-    const { email } = this.state;
+    const { children, email, age, description, terms } = this.state;
     return (
       <div>
         <h1>Meu Formulario - dados pessoais</h1>
         <form>
-
+        <fieldset>
           <div>
-            <label htmlFor="children">Filhos:
-              <select name="campoSelect" id="children">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </label>
+            <SelectInput children={children} handleChange={this.handleChange} />
           </div>
+        </fieldset>
 
           <div>
             <label htmlFor="email">E-mail:
-              <input type="email" id="email" onChange={ this.emailChange } value={ email } />
+              <input name="email" type="email" id="email" onChange={ this.handleChange } value={ email } />
             </label>
           </div>
 
           <div>
             <label htmlFor="age">Idade:
-              <input type="number" name="idade" id="age" />
+              <input type="number" name="age" id="age" onChange={ this.handleChange } value={ age }/>
             </label>
           </div>
 
           <div>
             <label htmlFor="profile">
-              <textarea name="description" id="profile" cols="30" rows="5">Descreva-se em poucas palavras</textarea>
+              <textarea name="description" id="description" onChange={ this.handleChange } value={ description }>
+                Descreva-se em poucas palavras</textarea>
             </label>
+          </div>
+
+          <div>
+          <label htmlFor="terms">
+              <input
+                id="terms"
+                type="checkbox"
+                name="terms"
+                onChange={ this.handleChange }
+                value={ terms }
+              />
+              Concordo com termos e acordos
+            </label>
+          </div>
+
+          <div>
+            <input type="file" name="file" id="file" />
           </div>
 
         </form>
