@@ -1,59 +1,64 @@
-const express = require('express');
+// src/app.js
 
-const teams = [
-  {
-    id: 1,
-    name: 'São Paulo Futebol Clube',
-    initials: 'SPF',
-  },
-  {
-    id: 2,
-    name: 'Clube Atlético Mineiro',
-    initials: 'CAM',
-  },
-];
+const express = require('express');
+require('express-async-errors');
 
 const app = express();
 
+const apiCredentials = require('./middlewares/apiCredentials');
+
+let nextId = 3;
+
+const teams = require('./utils/teams');
+
+const validateTeam = require('./middlewares/validateTeam');
+
+const existingId = require('./middlewares/existingId');
+
 app.use(express.json());
+app.use(apiCredentials);
 
-app.get('/', (req, res) => res.status(200).json({ message: 'Olá Mundo!' }));
+app.get('/teams', (req, res) => res.json(teams));
 
-app.get('/teams', (req, res) => res.status(200).json({ teams }));
-
-app.post('/teams', (req, res) => {
-  const newTeam = { ...req.body };
-  teams.push(newTeam);
-
-  res.status(201).json({ team: newTeam });
+app.get('/teams/:id', existingId, (req, res) => {
+  const id = Number(req.params.id);
+  const team = teams.find((t) => t.id === id);
+    res.json(team);
 });
 
-app.put('/teams/:id', (req, res) => {
-  const { id } = req.params;
-  const { name, initials } = req.body;
-
-  const updateTeam = teams.find((team) => team.id === Number(id));
-
-  if (!updateTeam) {
-    return res.status(404).json({ message: 'Team not found' });
+app.post('/teams', validateTeam, (req, res) => {
+  if (
+    // confere se a sigla proposta está inclusa nos times autorizados
+    !req.teams.teams.includes(req.body.sigla)
+    // confere se já não existe um time com essa sigla
+    && teams.every((t) => t.sigla !== req.body.sigla)
+  ) {
+    return res.status(422).json({ message: 'Já existe um time com essa sigla' });
   }
-
-  updateTeam.name = name;
-  updateTeam.initials = initials;
-  res.status(200).json({ updateTeam });
+  const team = { id: nextId, ...req.body };
+  teams.push(team);
+  nextId += 1;
+  res.status(201).json(team);
 });
 
-app.get('/teams/:id', (req, res) => {
-  const team = teams.find(({ id }) => id === Number(req.params.id));
-  res.status(200).json(team);
+app.put('/teams/:id', existingId, validateTeam, (req, res) => {
+  const id = Number(req.params.id);
+  const team = teams.find((t) => t.id === id);
+  
+  const index = teams.indexOf(team);
+  const updated = { id, ...req.body };
+  teams.splice(index, 1, updated);
+  res.status(201).json(updated);
 });
 
-app.delete('/teams/:id', (req, res) => {
-  const { id } = req.params;
-  const arrayPosition = teams.findIndex((team) => team.id === Number(id));
-  teams.splice(arrayPosition, 1);
-
-  res.status(200).end();
+app.delete('/teams/:id', existingId, (req, res) => {
+  const id = Number(req.params.id);
+  const team = teams.find((t) => t.id === id);
+  const index = teams.indexOf(team);
+  teams.splice(index, 1);
+  res.sendStatus(204);
 });
+
+app.use((req, res) => res.sendStatus(404));
 
 module.exports = app;
